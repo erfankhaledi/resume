@@ -1,0 +1,67 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+{% load static %}
+	<section class="s1">
+		<div class="main-container">
+			<div class="greeting-wrapper">
+				<h1>Get In Touch</h1> 
+			</div>
+			<div class="intro-wrapper">
+				
+				<div class="left-column">
+					<img id="profile_pic" src="{% static 'images/erfan1.jpg' %}">
+					<h5 style="text-align: center;line-height: 0;">Twitter : <a href="https://twitter.com/WebDevErfan">@WebDevErfan</a></h5>
+					<h5 style="text-align: center;line-height: 0;">Instagram : <a href="https://www.instagram.com/erfan_web_design/">@erfan_web_design</a></h5>
+                    <h5 style="text-align: center;line-height: 0;">GitHub : <a href="https://github.com/erfankhaledi/">@erfankhaledi</a></h5>
+					<h5 style="text-align: center;line-height: 0;">Email : <a href="">@erfan.kha791@gmail.com</a></h5>
+
+				</div>
+
+				<div class="right-column">
+
+					<div id="preview-shadow">
+						<div id="preview">
+							<div id="corner-tl" class="corner"></div>
+							<div id="corner-tr" class="corner"></div>
+							<h3>What I Do</h3>
+                            <p> Helping businesses thrive online through stunning websites and seamless user experiences </p>
+							<div id="corner-br" class="corner"></div>
+							<div id="corner-bl" class="corner"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<!-- <section class="s2">
+		<div class="main-container">
+			<a href=""></a>
+			<h3 style="text-align: center;">Get In Touch</h3>
+
+			<form id="contact-form">
+				<a name="contact"></a>
+
+				<label>Name</label>
+				<input class="input-field" type="text" name="name">
+
+				<label>Subject</label>
+				<input class="input-field" type="text" name="subject">
+
+				<label>Email</label>
+				<input class="input-field" type="text" name="email">
+
+				<label>Message</label>
+				<textarea class="input-field" name="message"></textarea>
+
+				<input id="submit-btn" type="submit" value="Send">
+			</form>
+		</div>
+	</section>  -->
+
+
+{% endblock content %}
