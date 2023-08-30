@@ -2,6 +2,12 @@
 {% load static %}
 {% block content %}
 <style type="text/css">
+	p{
+		text-align: right;
+	}
+	h4{
+		text-align: right;
+	}
 	img{
 		max-width: 100%;
 		object-fit: cover;
@@ -12,7 +18,7 @@
 	<img src="{{ post.thumbnail.url }}">
 	<h1 class="center">{{ post.headline }}</h1>
 
-	<h4>{{ post.sub_headline }}</h4>
+	<h4 class="corner-bl">{{ post.sub_headline }}</h4>
 
 	<p>{{ post.body|linebreaks }}</p>
 </div>

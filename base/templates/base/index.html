@@ -1,6 +1,459 @@
 {% extends 'base/main.html' %}
 {% load static %}
 {% block content %}
+<style>
+:root{
+	--mainColor:#eaeaea;
+	--secondaryColor:#fff;
+
+	--borderColor:#c1c1c1;
+
+	--mainText:black;
+	--secondaryText:#4b5156;
+
+	--themeDotBorder:#24292e;
+
+	--previewBg:rgb(251, 249, 243, 0.8);
+	--previewShadow:#f0ead6;
+
+
+	--buttonColor:black;
+
+
+}
+
+
+html, body{
+	padding: 0;
+	margin: 0;
+	scroll-behavior: smooth;
+}
+
+body *{
+	transition: 0.3s;
+}
+
+
+h1, h2, h3, h4, h5, h6, strong{
+	color: var(--mainText);
+	font-family: 'Russo One', sans-serif;
+	font-weight: 500;
+}
+
+p, li, span, label, input, textarea{
+	color: var(--secondaryText);
+	font-family: 'Roboto Mono', monospace;
+}
+
+a{
+	text-decoration: none;
+	color:#17a2b8;
+}
+
+ul{
+	list-style: none;
+}
+
+h1 { font-size: 56px;}
+h2 { font-size: 36px;}
+h3 { font-size: 28px;}
+h4 { font-size: 24px;}
+h5 { font-size: 20px;}
+h6 { font-size: 16px;}
+
+
+.s1{
+	background-color: var(--mainColor);
+	border-bottom:1px solid var(--borderColor);
+	overflow:auto;
+}
+
+.s2{
+	background-color: var(--secondaryColor);
+	border-bottom:1px solid var(--borderColor);
+	overflow:auto;
+}
+
+
+
+
+.main-container{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+
+.greeting-wrapper{
+	display: grid;
+	text-align: center;
+	align-content: center;
+	min-height: 10em;
+
+}
+
+.intro-wrapper{
+	background-color: var(--secondaryColor);
+	border:1px solid var(--borderColor);
+	border-radius:5px 5px 0 0;
+
+
+	-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: 
+		'nav-wrapper nav-wrapper'
+		'left-column right-column'
+	;
+}
+
+
+.nav-wrapper{
+	border-radius:5px 5px 0 0;
+	grid-area:nav-wrapper;
+	border-bottom: 1px solid var(--borderColor);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--mainColor);
+}
+
+#navigation a{
+	color:var(--mainText);
+}
+
+
+#navigation{
+	margin:0;
+	padding: 10px;
+}
+
+#navigation li{
+	display: inline-block;
+	margin-right: 5px;
+	margin-left:5px;
+}
+
+.dots-wrapper{
+	display: flex;
+	padding: 10px;
+}
+
+#dot-1{
+	background-color:  #FC6058;
+}
+
+#dot-2{
+	background-color:  #FEC02F;
+}
+
+#dot-3{
+	background-color:  #2ACA3E;
+}
+
+.browser-dot{
+	background-color: black;
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	margin: 5px;
+
+	-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+
+}
+
+
+.left-column{
+	grid-area: left-column;
+	padding-top:50px;
+	padding-bottom: 50px;
+}
+
+#profile_pic{
+	display: block;
+	margin:0 auto;
+
+	height: 200px;
+	width: 200px;
+	object-fit: cover;
+	border:2px solid var(--borderColor);
+}
+
+
+#theme-options-wrapper{
+	display: flex;
+	justify-content: center;
+}
+
+.theme-dot{
+	height: 30px;
+	width: 30px;
+	background-color: black;
+	border-radius: 50%;
+
+	margin: 5px;
+	border:2px solid var(--themeDotBorder);
+
+	-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+
+	cursor: pointer;
+}
+
+
+.theme-dot:hover{
+	border-width: 5px;
+}
+
+
+#light-mode{
+	background-color: #fff;
+}
+
+#blue-mode{
+	background-color: #192734;
+}
+
+#green-mode{
+	background-color: #78866b;
+}
+
+#purple-mode{
+	background-color: #7E4C74;
+}
+
+#settings-note{
+	font-size: 12px;
+	font-style: italic;
+	text-align: center;
+}
+
+.right-column{
+	grid-area: right-column;
+	display: grid;
+	align-content: center;
+
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+
+#preview-shadow{
+	background-color: var(--previewShadow);
+	max-width: 300px;
+	height: 180px;
+	padding-left: 30px;
+	padding-top: 30px;
+}
+
+#preview{
+	width: 300px;
+	border:1.5px solid #17a2b8;
+	background-color: var(--previewBg);
+	padding:15px;
+	position: relative;
+}
+
+.corner{
+	width:7px;
+	height: 7px;
+	border-radius: 50%;
+	border:1.5px solid #17a2b8;
+	background-color: #fff;
+	position: absolute;
+}
+
+#corner-tl{
+	top:-5px;
+	left: -5px
+}
+
+#corner-tr{
+	top:-5px;
+	right: -5px
+}
+
+
+#corner-br{
+	bottom:-5px;
+	right: -5px
+}
+
+
+#corner-bl{
+	bottom:-5px;
+	left: -5px
+}
+
+.about-wrapper{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	padding-bottom: 50px;
+	padding-top: 50px;
+	gap:100px;
+}
+
+
+#skills{
+	display: flex;
+	justify-content: space-evenly;
+	background-color: var(--previewShadow);
+}
+
+.social-links{
+	display: grid;
+	align-content: center;
+	text-align: center;
+}
+
+#social_img{
+	width: 100%;
+}
+
+
+.post-wrapper{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 320px);
+	gap:20px;
+	justify-content: center;
+	padding-bottom: 50px;
+}
+
+.post{
+	border:1px solid var(--borderColor);
+	-webkit-box-shadow: -2px 7px 21px -9px rgba(0,0,0,0.75);
+	-moz-box-shadow: -2px 7px 21px -9px rgba(0,0,0,0.75);
+	box-shadow: -2px 7px 21px -9px rgba(0,0,0,0.75);
+}
+
+.thumbnail{
+	display: block;
+	width: 100%;
+	height:180px;
+	object-fit: cover;
+}
+
+.post-preview{
+	background-color: #fff;
+	padding:15px;
+}
+
+.post-title{
+	color:black;
+	margin: 0;
+}
+
+.post-intro{
+	color:#4b5156;
+	font-size: 14px;
+}
+.tag{
+	display: block;
+	color: #fff;
+	background-color: #888;
+	border-radius: 5px;
+	margin: 6px;
+	padding: 3px 4px;
+	font-size: 12px;
+}
+
+#contact-form{
+	display: block;
+	max-width: 600px;
+	margin: 0 auto;
+	border: 1px solid var(--borderColor);
+	padding: 15px;
+	border-radius: 5px;
+	background-color: var(--mainColor);
+	margin-bottom: 50px;
+
+}
+
+#contact-form label{
+	line-height: 2.7em;
+}
+
+#contact-form textarea{
+	min-height: 100px;
+	font-size: 14px;
+}
+
+
+.input-field{
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom:10px; 
+	background-color: var(--secondaryColor);
+	border-radius: 5px;
+	border:1px solid var(--borderColor);
+	font-size: 14px;
+}
+
+
+#submit-btn{
+	margin-top: 10px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom:10px; 
+	color: #fff;
+	background-color: var(--buttonColor);
+	border:none;
+}
+
+
+@media screen and (max-width: 1200px){
+	.main-container{
+		width: 95%;
+	}
+}
+
+@media screen and (max-width: 800px){
+	.intro-wrapper{
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+			'nav-wrapper'
+			'left-column'
+			'right-column'
+		;
+	}
+
+	.right-column{
+		justify-content: center;
+	}
+
+}
+
+@media screen and (max-width: 400px){
+	#preview-shadow{
+		max-width: 280px;
+		height: 180px;
+		padding-left: 10px;
+		padding-top: 10px;
+	}
+
+	#preview{
+		width: 280px;
+
+	}
+
+}
+
+
+
+
+
+	h4{
+		text-align: right
+		}
+	h5{
+		text-align: right;
+	}
+</style>
 	<section class="s1">
 		<div class="main-container">
 			<div class="greeting-wrapper">
@@ -11,7 +464,6 @@
 				<div class="left-column">
 					<img id="profile_pic" src="{% static 'images/erfan1.jpg' %}">
 					<h5 style="text-align: center;line-height: 0;"><a href="https://www.instagram.com/erfan_web_design/">@erfan_web_design</a></h5>
-					<h5 style="text-align: center;line-height: 0;"><a href="https://twitter.com/WebDevErfan">@WebDevErfan</a></h5>
 					<p id="settings-note">Tehran, Iran</p>
 					<div id="theme-options-wrapper">
 						<div data-mode="light" id="light-mode" class="theme-dot"></div>
@@ -28,12 +480,19 @@
 
 					<div id="preview-shadow">
 						<div id="preview">
-							<div id="corner-tl" class="corner"></div>
-							<div id="corner-tr" class="corner"></div>
+							<!-- <div id="corner-tl" class="corner"></div> -->
+							<!-- <div id="corner-tr" class="corner"></div> -->
 							<h3>What I Do</h3>
-							<p> Helping businesses thrive online through stunning websites and seamless user experiences </p>
-							<div id="corner-br" class="corner"></div>
-							<div id="corner-bl" class="corner"></div>
+							 <h6>🚀▪️ بهبود کسب و کار آنلاین شما ▪️📈
+								<br>
+								💼▪️ از طریق وب سایت های جذاب و کارآمد ▪️🌐
+								<br>
+								🔥▪️ به رویای دیجیتال تان رنگ واقعیت ببخشید ▪️🔥
+							</h6>
+							 
+
+							<!-- <div id="corner-br" class="corner"></div> -->
+							<!-- <div id="corner-bl" class="corner"></div> -->
 						</div>
 					</div>
 				</div>
@@ -46,21 +505,26 @@
 
 			<div class="about-wrapper">
 				<div class="about-me">
-					<h4>More about me</h4>
+					<h4>
+						
+						در مورد من	
+
+					</h4>
 					  
-					<p>As a professional web developer,</p>
+					<h5>
+						<p>به عنوان یک توسعه دهنده وب حرفه ای</p>
+						<p>در ایجاد تجربیات دیجیتالی جذاب و استفاده آسان تخصص دارم</p>
+						<p>تخصص من در طراحی، همراه با پیشینه فنی قوی، به من اجازه می دهد تا مفاهیم را با استفاده از روش های کدگذاری ساده و موثر به واقعیت تبدیل کنم</p>
 
-					<p>I specialize in creating digital experiences that are engaging and easy to use.</p>
+					</h5>
+
 					
-					<p>My expertise in design, combined with a solid technical background, allows me to transform concepts into reality using streamlined and effective coding methods.</p>
-
-
 					<hr>
 
-					<h4>TOP EXPERTISE</h4>
-
-					<p>Fullstack developer with primary focus on JavaScript + Django + HTML/CSS: </p>
-					<!-- <a target="_blank" href="resume.pdf">Download Resume</a> -->
+					<h4>تخصص من</h4>
+					<h5>
+						<p>ابزارهای کد نویسی برای ساخت وب سایت</p>
+					</h5>
 
 					<div id="skills">
 						<ul>
@@ -82,11 +546,8 @@
 						</ul>
 
 					</div>
-					<h3>Find me on Instagram & Twitter </h3>
-
 					
-					<h5>Twitter : <a target="_blank" href="https://twitter.com/WebDevErfan"> @WebDevErfan</a></h5>
-					<h5>Instagram : <a target="_blank" href="https://www.instagram.com/erfan_web_design/"> @erfan_web_design</a></h5>
+					<h3>Instagram : <a target="_blank" href="https://www.instagram.com/erfan_web_design/"> @erfan_web_design</a></h3>
 
 				</div>
 
@@ -102,7 +563,7 @@
 
 	<section class="s1">
 		<div class="main-container">
-			<h3 style="text-align: center;">Some of my past projects</h3>
+			<h3 style="text-align: center;">برخی از پروژه های گذشته من</h3>
 			<div class="post-wrapper">
 				{% for post in posts %}
 				<div>
@@ -111,6 +572,8 @@
 						<div class="post-preview">
 							<h6 class="post-title">{{ post.headline }}</h6>
 							<p class="post-intro">{{ post.sub_headline }}</p>
+
+							<!-- <p class="post-intro">{{ post.sub_headline }}</p> -->
 							<a href="{% url 'base:post' post.slug %}">Read More</a>
 							
 							{% if request.user.is_authenticated %}
@@ -160,9 +623,48 @@
 	</section>  -->
 
 	<script type="text/javascript">
+		console.log('Its working')
+
+		let theme = localStorage.getItem('theme')
+
+		if(theme == null){
+			setTheme('light')
+		}else{
+			setTheme(theme)
+		}
+
+		let themeDots = document.getElementsByClassName('theme-dot')
+
+
+		for (var i=0; themeDots.length > i; i++){
+			themeDots[i].addEventListener('click', function(){
+				let mode = this.dataset.mode
+				console.log('Option clicked:', mode)
+				setTheme(mode)
+			})
+		}
 		let static = "{% static 'css' %}"
+		function setTheme(mode){
+			if(mode == 'light'){
+				document.getElementById('theme-style').href = static + '/default.css'
+			}
+
+			if(mode == 'blue'){
+				document.getElementById('theme-style').href = static/ + '/blue.css'
+			}
+
+			if(mode == 'green'){
+				document.getElementById('theme-style').href = static + '/green.css'
+			}
+
+			if(mode == 'purple'){
+				document.getElementById('theme-style').href = static + '/purple.css'
+			}
+
+			localStorage.setItem('theme', mode)
+		}
+		
 	</script>
 
-	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 
 {% endblock content %}
