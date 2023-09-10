@@ -18,6 +18,7 @@ class Post(models.Model):
     featured = models.BooleanField(default=True)
     tags = models.ManyToManyField(Tag, null=True)
     slug = models.SlugField()
+    link = models.URLField(null=True, blank=True)  # Added link field
 
     
     def get_absolute_url(self):
